@@ -1,0 +1,104 @@
+/* 기본 리셋 및 화면 중앙 정렬 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 지정하신 IBM Plex Sans KR 폰트 적용 */
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* 전체 레이아웃 (가로 배치) */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 60px; /* 이미지와 텍스트 사이 간격 */
+    padding: 40px;
+}
+
+/* 왼쪽: 이미지 영역 */
+.profile-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-left img {
+    width: 250px; /* 보내주신 시안 비율에 맞춘 크기 */
+    height: auto;
+}
+
+.profile-credit {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #b0b0b0; /* 시안에 있는 연한 회색 글자 */
+}
+
+/* 오른쪽: 텍스트 및 링크 영역 */
+.profile-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-name {
+    font-size: 64px;
+    font-weight: 900; /* 굵고 정갈한 서체 표현 */
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.description {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: #111;
+}
+
+/* 소셜 링크 아이콘 스타일 */
+.links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.links a {
+    text-decoration: none;
+    font-size: 32px;
+    color: #000; /* 기본 검은색 아이콘 */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* 마우스 오버 시 인터랙션 효과 */
+.links a:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* 유튜브 브랜드 컬러 적용 */
+.fa-youtube {
+    color: #FF0000;
+}
+
+/* 모바일 화면 대응 (화면 폭이 좁아지면 세로 정렬) */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .profile-name {
+        font-size: 48px;
+    }
+    .links {
+        justify-content: center; /* 모바일에서 아이콘 가운데 정렬 */
+    }
+}
