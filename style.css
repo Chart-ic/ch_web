@@ -1,4 +1,4 @@
-/* 기본 리셋 및 화면 중앙 정렬 */
+/* 기본 리셋 */
 * {
     margin: 0;
     padding: 0;
@@ -6,25 +6,33 @@
 }
 
 body {
-    /* 지정하신 IBM Plex Sans KR 폰트 적용 */
     font-family: 'IBM Plex Sans KR', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background-color: #ffffff;
     color: #000000;
+    /* 스크롤이 자연스럽도록 기본 레이아웃 변경 */
+    display: flex;
+    flex-direction: column;
 }
 
-/* 전체 레이아웃 (가로 배치) */
+/* 각 섹션이 화면을 가득 채우거나 여백을 갖도록 설정 */
+.profile-section-container {
+    min-height: 100vh; /* 각 섹션이 최소 화면 100% 높이를 가짐 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+/* ==================================
+   1. 프로필 영역 스타일
+================================== */
 .profile-container {
     display: flex;
     align-items: center;
-    gap: 60px; /* 이미지와 텍스트 사이 간격 */
-    padding: 40px;
+    gap: 60px;
 }
 
-/* 왼쪽: 이미지 영역 */
 .profile-left {
     display: flex;
     flex-direction: column;
@@ -32,17 +40,28 @@ body {
 }
 
 .profile-left img {
-    width: 250px; /* 보내주신 시안 비율에 맞춘 크기 */
+    width: 250px;
     height: auto;
 }
 
 .profile-credit {
     margin-top: 15px;
     font-size: 14px;
-    color: #b0b0b0; /* 시안에 있는 연한 회색 글자 */
+    color: #b0b0b0;
 }
 
-/* 오른쪽: 텍스트 및 링크 영역 */
+.profile-credit a {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.profile-credit a:hover {
+    color: #777777;
+    text-decoration: underline;
+}
+
 .profile-right {
     display: flex;
     flex-direction: column;
@@ -51,7 +70,7 @@ body {
 
 .profile-name {
     font-size: 64px;
-    font-weight: 900; /* 굵고 정갈한 서체 표현 */
+    font-weight: 900;
     margin-bottom: 20px;
     letter-spacing: -1px;
 }
@@ -63,42 +82,136 @@ body {
     color: #111;
 }
 
-/* 소셜 링크 아이콘 스타일 */
-.links {
+links {
     display: flex;
     gap: 15px;
     align-items: center;
 }
 
-.links a {
+links a {
     text-decoration: none;
     font-size: 32px;
-    color: #000; /* 기본 검은색 아이콘 */
+    color: #000;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* 마우스 오버 시 인터랙션 효과 */
-.links a:hover {
+links a:hover {
     transform: scale(1.1);
     opacity: 0.8;
 }
 
-/* 유튜브 브랜드 컬러 적용 */
-.fa-youtube {
-    color: #FF0000;
+.fa-youtube { color: #FF0000; }
+.fa-github {color: #000000; }
+.fa-x-twitter {color: #000000; }
+
+/* ==================================
+   2. 아카이브 영역 스타일
+================================== */
+
+.section-container {
+    min-height: 100vh; /* 각 섹션이 최소 화면 100% 높이를 가짐 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding: 60px 100px;
 }
 
-/* 모바일 화면 대응 (화면 폭이 좁아지면 세로 정렬) */
-@media (max-width: 768px) {
+.archive-title {
+    font-size: 72px; /* 디자인 시안처럼 큰 글씨 */
+    font-weight: 900;
+    margin-bottom: 60px;
+    letter-spacing: -1px;
+    text-align: left;
+}
+
+.archive-content {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+/* 아카이브 이미지 밑 문구 스타일 (프로필 크레딧과 통일) */
+.archive-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 문구가 이미지 중앙에 오도록 정렬 */
+}
+
+.archive-left-t {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #b0b0b0; /* 프로필 크레딧과 동일한 연한 회색 */
+    text-align: center;
+}
+
+
+.archive-left img {
+    width: 500px; /* 스크린샷 이미지 크기 */
+    border-radius: 15px; /* 이미지 모서리 둥글게 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* 이미지가 돋보이도록 약간의 그림자 추가 */
+}
+
+.archive-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.archive-description {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #222;
+}
+
+.archive-button {
+    background-color: #589AF0; /* 시안에 있는 부드러운 파란색 */
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 16px 45px;
+    border-radius: 40px; /* 둥근 버튼 모양 */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.archive-button:hover {
+    background-color: #4382d6; /* 마우스 오버 시 조금 더 진한 파란색 */
+    transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
+}
+
+
+/* ==================================
+   3. 모바일 화면 대응 (반응형)
+================================== */
+@media (max-width: 900px) {
+    /* 프로필 모바일 정렬 */
     .profile-container {
         flex-direction: column;
         text-align: center;
         gap: 40px;
     }
-    .profile-name {
-        font-size: 48px;
+    .profile-name { font-size: 48px; }
+    links { justify-content: center; }
+
+    /* 아카이브 모바일 정렬 */
+    .archive-title { font-size: 52px; margin-bottom: 40px; }
+    .archive-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
     }
-    .links {
-        justify-content: center; /* 모바일에서 아이콘 가운데 정렬 */
+    .archive-left img {
+        width: 100%;
+        max-width: 500px;
+    }
+    .archive-right {
+        align-items: center;
+    }
+    .archive-description {
+        font-size: 18px;
     }
 }
