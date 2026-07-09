@@ -9,19 +9,20 @@ body {
     font-family: 'IBM Plex Sans KR', sans-serif;
     background-color: #ffffff;
     color: #000000;
-    /* 스크롤이 자연스럽도록 기본 레이아웃 변경 */
     display: flex;
     flex-direction: column;
 }
 
-/* 각 섹션이 화면을 가득 채우거나 여백을 갖도록 설정 */
-.profile-section-container {
-    min-height: 100vh; /* 각 섹션이 최소 화면 100% 높이를 가짐 */
+/* 각 섹션 공통 스타일 */
+.profile-section-container,
+.section-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
+    align-items: center; /* 화면 정중앙 배치 */
+    padding: 60px 40px;
+    width: 100%;
 }
 
 /* ==================================
@@ -82,43 +83,44 @@ body {
     color: #111;
 }
 
-links {
+/* [수정] 클래스 선택자 점(.)을 추가하여 정상 작동하도록 변경 */
+.links {
     display: flex;
     gap: 15px;
     align-items: center;
 }
 
-links a {
+.links a {
     text-decoration: none;
     font-size: 32px;
     color: #000;
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-links a:hover {
+.links a:hover {
     transform: scale(1.1);
     opacity: 0.8;
 }
 
 .fa-youtube { color: #FF0000; }
-.fa-github {color: #000000; }
-.fa-x-twitter {color: #000000; }
+.fa-github { color: #000000; }
+.fa-x-twitter { color: #000000; }
 
 /* ==================================
    2. 아카이브 영역 스타일
 ================================== */
 
-.section-container {
-    min-height: 100vh; /* 각 섹션이 최소 화면 100% 높이를 가짐 */
+/* [수정] 시안과 동일하게 일직선 정렬 축을 맞춰주는 가이드 박스 */
+.archive-inner {
+    width: 100%;
+    max-width: 1100px; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    padding: 60px 100px;
+    align-items: flex-start;
 }
 
 .archive-title {
-    font-size: 72px; /* 디자인 시안처럼 큰 글씨 */
+    font-size: 72px;
     font-weight: 900;
     margin-bottom: 60px;
     letter-spacing: -1px;
@@ -129,29 +131,26 @@ links a:hover {
     display: flex;
     align-items: center;
     gap: 80px;
-    max-width: 1100px;
     width: 100%;
 }
 
-/* 아카이브 이미지 밑 문구 스타일 (프로필 크레딧과 통일) */
 .archive-left {
     display: flex;
     flex-direction: column;
-    align-items: center; /* 문구가 이미지 중앙에 오도록 정렬 */
+    align-items: center;
+}
+
+.archive-left img {
+    width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
 .archive-left-t {
     margin-top: 15px;
     font-size: 14px;
-    color: #b0b0b0; /* 프로필 크레딧과 동일한 연한 회색 */
+    color: #b0b0b0;
     text-align: center;
-}
-
-
-.archive-left img {
-    width: 500px; /* 스크린샷 이미지 크기 */
-    border-radius: 15px; /* 이미지 모서리 둥글게 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* 이미지가 돋보이도록 약간의 그림자 추가 */
 }
 
 .archive-right {
@@ -167,38 +166,62 @@ links a:hover {
     color: #222;
 }
 
+/* [추가] copyparty 텍스트 링크 스타일 */
+.archive-description .text-link {
+    color: #589AF0;
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.archive-description .text-link:hover {
+    color: #4382d6;
+    text-decoration: underline;
+}
+
 .archive-button {
-    background-color: #589AF0; /* 시안에 있는 부드러운 파란색 */
+    background-color: #589AF0;
     color: #ffffff;
     text-decoration: none;
     font-size: 22px;
     font-weight: 700;
     padding: 16px 45px;
-    border-radius: 40px; /* 둥근 버튼 모양 */
+    border-radius: 40px;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .archive-button:hover {
-    background-color: #4382d6; /* 마우스 오버 시 조금 더 진한 파란색 */
-    transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
+    background-color: #4382d6;
+    transform: translateY(-2px);
 }
-
 
 /* ==================================
    3. 모바일 화면 대응 (반응형)
 ================================== */
 @media (max-width: 900px) {
-    /* 프로필 모바일 정렬 */
+    .profile-section-container,
+    .section-container {
+        padding: 80px 24px;
+        min-height: auto;
+    }
+
     .profile-container {
         flex-direction: column;
         text-align: center;
         gap: 40px;
     }
     .profile-name { font-size: 48px; }
-    links { justify-content: center; }
+    .links { justify-content: center; }
 
-    /* 아카이브 모바일 정렬 */
-    .archive-title { font-size: 52px; margin-bottom: 40px; }
+    .archive-inner {
+        align-items: center;
+    }
+    .archive-title { 
+        font-size: 52px; 
+        margin-bottom: 40px; 
+        text-align: center;
+        width: 100%;
+    }
     .archive-content {
         flex-direction: column;
         text-align: center;
