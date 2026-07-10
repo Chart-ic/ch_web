@@ -237,4 +237,35 @@ body {
     .archive-description {
         font-size: 18px;
     }
+    
+    /* ==================================
+   [추가] 로딩 시 페이드인 업 애니메이션
+================================== */
+
+/* 1. 하단에서 위로 올라오며 투명도가 밝아지는 애니메이션 정의 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px); /* 40px 아래에서 시작 */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);   /* 원래 제자리로 이동 */
+    }
+}
+
+/* 2. 프로필 영역 컨테이너에 애니메이션 적용 */
+.profile-container {
+    opacity: 0; /* 애니메이션 시작 전에는 숨김 처리 */
+    /* 1.2초 동안 진행, cubic-bezier로 부드럽고 유기적인 속도감(처음엔 빠르고 끝은 부드럽게) 지정 */
+    animation: fadeInUp 1.0s cubic-bezier(0.0, 0.25, 0.5, 1) both;
+}
+
+/* 3. 아카이브 영역도 로딩 시 함께 반응하도록 설정 */
+.archive-inner {
+    opacity: 0;
+    animation: fadeInUp 1.0s cubic-bezier(0.0, 0.25, 0.5, 1) both;
+    animation-delay: 0.15s; /* 프로필보다 0.15초 뒤에 시작되도록 하여 입체감(시차) 부여 */
+}
+
 }
